@@ -1,7 +1,6 @@
 package br.com.treld.repository;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertFalse;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,6 +10,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -28,19 +29,13 @@ public class PostRepositoryTest {
 	public void testingPostPersistence() {
 		Post postToPersist = buildPost();
 		repository.save(postToPersist);
-		Post postPersisted = repository.findOne(postToPersist.getId());
-
-		assertNotNull(postToPersist.getId());
-		assertEquals(postPersisted.getTitle(), postToPersist.getTitle());
-		assertEquals(postPersisted.getBody(), postToPersist.getBody());
-		assertEquals(postPersisted.getPublicationDate(), postToPersist.getPublicationDate());
-		assertEquals(postPersisted.getCreationDate(), postToPersist.getCreationDate());
-
+		Post postPersisted = repository.findOne(postToPersist.getId());		
+		assertFalse(!comparePosts(postToPersist, postPersisted));
 		repository.delete(postPersisted);
 	}
-	
+
 	@Test
-	public void findAllPostOrderedByPublicationDate(){
+	public void findAllPostOrderedByPublicationDate() {
 		Post post1 = buildPost();
 		post1.setPublicationDate(getCurrentDatePlusParam(200));
 		Post post2 = buildPost();
@@ -48,24 +43,45 @@ public class PostRepositoryTest {
 		Post post3 = buildPost();
 		post3.setPublicationDate(getCurrentDatePlusParam(400));
 		Post post4 = buildPost();
-		post4.setPublicationDate(getCurrentDatePlusParam(500));		
-		Post post5 = buildPost();		
+		post4.setPublicationDate(getCurrentDatePlusParam(500));
+		Post post5 = buildPost();
 		post5.setPublicationDate(getCurrentDatePlusParam(600));
-		
+
 		List<Post> unOrderedList = new ArrayList<>();
 		unOrderedList.add(post1);
 		unOrderedList.add(post2);
 		unOrderedList.add(post3);
 		unOrderedList.add(post4);
 		unOrderedList.add(post5);
-		
+
 		repository.save(unOrderedList);
 		
-		List<Post> posts = repository.findAll(new Sort("publicationDate"));
-				
+		Pageable pageable = new PageRequest(0,5,Sort.Direction.DESC, "publicationDate");
+		
+		List<Post> posts = repository.findAll(pageable).getContent();
+		
+		repository.delete(unOrderedList);
+		
+		for(int i = unOrderedList.size()-1, y = 0; i >=0;i--, y++){			
+			Post post = unOrderedList.get(i);
+			assertFalse(!comparePosts(post, posts.get(y)));
+		}				
+
 	}
-	
-	private Date getCurrentDatePlusParam(long milisecond){		
+
+	public boolean comparePosts(Post p1, Post p2) {
+		if (p1.getTitle().equals(p2.getTitle()) && 
+			p1.getBody().equals(p2.getBody()) && 
+			p1.getPublicationDate().equals(p2.getPublicationDate()) && 
+			p1.getCreationDate().equals(p2.getCreationDate()))
+		{
+			return true;
+		}
+		
+		return false;
+	}
+
+	private Date getCurrentDatePlusParam(long milisecond) {
 		long totalMilisecond = new Date().getTime() + milisecond;
 		return new Date(totalMilisecond);
 	}
