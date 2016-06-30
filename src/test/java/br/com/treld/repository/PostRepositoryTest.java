@@ -55,11 +55,10 @@ public class PostRepositoryTest {
 		unOrderedList.add(post5);
 
 		repository.save(unOrderedList);
-		
-		Pageable pageable = new PageRequest(0,5,Sort.Direction.DESC, "publicationDate");
-		
-		List<Post> posts = repository.findAll(pageable).getContent();
-		
+
+		Pageable pageable = new PageRequest(0, 5);
+		List<Post> posts = repository.findAllByOrderByPublicationDateDesc(pageable).getContent();
+
 		repository.delete(unOrderedList);
 		
 		for(int i = unOrderedList.size()-1, y = 0; i >=0;i--, y++){			
