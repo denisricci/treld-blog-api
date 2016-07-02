@@ -4,12 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.treld.model.Post;
 import br.com.treld.services.PostService;
@@ -30,9 +25,10 @@ public class PostController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    public void save(Post post){
+    @RequestMapping(method = RequestMethod.POST)
+    public Post save(@RequestBody Post post){
         postService.save(post);
+        return post;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
