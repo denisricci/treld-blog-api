@@ -2,6 +2,7 @@ package br.com.treld.services;
 
 import br.com.treld.TreldBlogApplication;
 import br.com.treld.TreldBlogApplicationTests;
+import br.com.treld.TreldTest;
 import br.com.treld.model.Post;
 import br.com.treld.repository.PostRepository;
 import br.com.treld.services.impl.DefaultPostService;
@@ -30,10 +31,8 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Created by rsouza on 02/07/16.
  */
+@TreldTest
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = TreldBlogApplication.class)
-@WebAppConfiguration
-@EnableAutoConfiguration
 public class PostServiceTest {
 
     @Autowired
@@ -76,23 +75,23 @@ public class PostServiceTest {
         Post p2019 = createPostWithYear(2019);
         Post p2020 = createPostWithYear(2020);
 
-        postService.save(p2020);
-        postService.save(p2019);
-        postService.save(p2018);
-        postService.save(p2017);
-        postService.save(p2016);
-        postService.save(p2015);
-        postService.save(p2014);
-        postService.save(p2013);
-        postService.save(p2012);
-        postService.save(p2011);
-        postService.save(p2010);
-        postService.save(p2009);
-        postService.save(p2008);
-        postService.save(p2007);
         postService.save(p2006);
+        postService.save(p2007);
+        postService.save(p2008);
+        postService.save(p2009);
+        postService.save(p2010);
+        postService.save(p2011);
+        postService.save(p2012);
+        postService.save(p2013);
+        postService.save(p2014);
+        postService.save(p2015);
+        postService.save(p2016);
+        postService.save(p2017);
+        postService.save(p2018);
+        postService.save(p2019);
+        postService.save(p2020);
 
-        List<Post> page1 = postService.getPage(1);
+        List<Post> page1 = postService.getPage(1, 10);
         assertEquals(10, page1.size());
         assertEquals(p2020.getId(), page1.get(0).getId());
         assertEquals(p2019.getId(), page1.get(1).getId());
@@ -105,22 +104,20 @@ public class PostServiceTest {
         assertEquals(p2012.getId(), page1.get(8).getId());
         assertEquals(p2011.getId(), page1.get(9).getId());
 
-        List<Post> page2 = postService.getPage(2);
-
+        List<Post> page2 = postService.getPage(2, 10);
         assertEquals(5, page2.size());
         assertEquals(p2010.getId(), page2.get(0).getId());
         assertEquals(p2009.getId(), page2.get(1).getId());
         assertEquals(p2008.getId(), page2.get(2).getId());
         assertEquals(p2007.getId(), page2.get(3).getId());
         assertEquals(p2006.getId(), page2.get(4).getId());
-
     }
 
     public Post createPostWithYear(int year){
         Calendar date = Calendar.getInstance();
         date.set(Calendar.YEAR, year);
         Post post = new Post();
-        post.setCreationDate(date.getTime());
+        post.setPublicationDate(date.getTime());
         return post;
     }
 }

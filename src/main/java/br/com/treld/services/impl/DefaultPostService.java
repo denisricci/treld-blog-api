@@ -31,7 +31,12 @@ public class DefaultPostService implements PostService {
 
     @Override
     public List<Post> getPage(int pageNumber) {
-        Pageable page = new PageRequest(pageNumber-1, 20);
+        return getPage(pageNumber, 20);
+    }
+
+    @Override
+    public List<Post> getPage(int pageIndex, int pageSize) {
+        Pageable page = new PageRequest(pageIndex-1, pageSize);
         return postRepository.findAllByOrderByPublicationDateDesc(page).getContent();
     }
 }
