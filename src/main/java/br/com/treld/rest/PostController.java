@@ -1,13 +1,18 @@
 package br.com.treld.rest;
 
-import br.com.treld.model.Post;
-import br.com.treld.services.PostService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
-import java.util.List;
+import br.com.treld.model.Post;
+import br.com.treld.services.PostService;
 
 /**
  * Created by rsouza on 29/06/16.
@@ -26,13 +31,12 @@ public class PostController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public void get(Post post){
+    public void save(Post post){
         postService.save(post);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Post get(@PathVariable("id") String id){
-
         return postService.findById(id);
     }
 
