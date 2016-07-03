@@ -21,9 +21,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and()
-				.authorizeRequests().anyRequest().authenticated().and().formLogin()
-				.successHandler(customAuthenticationSuccessHandler).failureHandler(restAuthenticationFailureHandler);
+		http.
+			csrf().disable().
+			exceptionHandling().
+			authenticationEntryPoint(restAuthenticationEntryPoint).
+			and().
+			authorizeRequests().anyRequest().authenticated().and().formLogin().
+			successHandler(customAuthenticationSuccessHandler).
+			failureHandler(restAuthenticationFailureHandler);
 
 	}
 
