@@ -2,13 +2,16 @@ package br.com.treld.model;
 
 import java.util.Date;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="posts")
 public class Post {
 	
 	private String id;
+	@NotEmpty(message="The post must have a title")
 	private String title;
+	@NotEmpty(message="The post must have a body")
 	private String body;
 	private Date creationDate;
 	private Date publicationDate;

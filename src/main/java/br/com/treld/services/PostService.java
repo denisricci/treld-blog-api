@@ -9,8 +9,10 @@ import java.util.List;
  */
 public interface PostService {
 
-    void save(Post post);
+    Post save(Post post);
     Post findById(String id);
     List<Post> getPage(int page);
+    void delete(String id);
+    void update(Post post);
 
 }
