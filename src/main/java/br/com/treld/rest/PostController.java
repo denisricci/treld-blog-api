@@ -33,12 +33,11 @@ public class PostController {
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
-	public ResponseEntity<Void> save(@Valid Post post) {
+	public ResponseEntity<Post> save(@Valid @RequestBody Post post) {
 		Post postSaved = postService.save(post);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(postSaved.getId())
 				.toUri();
-		//No rest, normalmente enviamos ao cliente o endere�o de onde ele pode consultar o recurso criado. Eduardo
-		return ResponseEntity.created(uri).build();
+		return ResponseEntity.created(uri).body(postSaved);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
