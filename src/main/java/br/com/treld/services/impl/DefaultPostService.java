@@ -20,8 +20,8 @@ public class DefaultPostService implements PostService {
     private PostRepository postRepository;
 
     @Override
-    public void save(Post post) {
-        postRepository.save(post);
+    public Post save(Post post) {
+        return postRepository.save(post);
     }
 
     @Override
@@ -39,4 +39,14 @@ public class DefaultPostService implements PostService {
         Pageable page = new PageRequest(pageIndex-1, pageSize);
         return postRepository.findAllByOrderByPublicationDateDesc(page).getContent();
     }
+
+	@Override
+	public void delete(String id) {
+		postRepository.delete(id);
+	}
+
+	@Override
+	public void update(Post post) {
+		postRepository.save(post);
+	}
 }
