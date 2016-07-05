@@ -2,6 +2,7 @@ package br.com.treld.model;
 
 import java.util.Date;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -15,7 +16,15 @@ public class Post {
 	private String body;
 	private Date creationDate;
 	private Date publicationDate;
-		
+
+	@Override
+	public String toString() {
+		if(StringUtils.isNotEmpty(title))
+			return title;
+
+		return super.toString();
+	}
+
 	public String getId() {
 		return id;
 	}

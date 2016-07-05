@@ -32,7 +32,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile("org.springframework.boot:spring-boot-devtools")
-	testCompile('org.springframework.boot:spring-boot-starter-test') 
+	compile(group: 'org.apache.commons', name: 'commons-lang3', version: '3.0')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
 	
 }
 
