@@ -12,7 +12,8 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
-apply plugin: 'spring-boot' 
+apply plugin: 'spring-boot'
+apply plugin: 'pmd'
 
 jar {
 	baseName = 'treld-blog'
@@ -43,4 +44,9 @@ eclipse {
 		 containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
 		 containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
 	}
+}
+
+pmd {
+	toolVersion = '5.1.1'
+	ruleSetFiles = files('rulesets/java/pmd-ruleset.xml')
 }

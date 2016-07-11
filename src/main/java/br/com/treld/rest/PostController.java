@@ -24,6 +24,7 @@ import br.com.treld.services.PostService;
 @RequestMapping("${baseUrl}/post/")
 public class PostController {
 
+	public static final String PATH_ID = "/{id}";
 	@Autowired
 	private PostService postService;
 
@@ -35,24 +36,24 @@ public class PostController {
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public ResponseEntity<Post> save(@Valid @RequestBody Post post) {
 		Post postSaved = postService.save(post);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(postSaved.getId())
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path(PATH_ID).buildAndExpand(postSaved.getId())
 				.toUri();
 		return ResponseEntity.created(uri).body(postSaved);
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = PATH_ID, method = RequestMethod.GET)
 	public ResponseEntity<Post> get(@PathVariable("id") String id) {
 		Post post = postService.findById(id);
 		return ResponseEntity.status(HttpStatus.OK).body(post);
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = PATH_ID, method = RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable("id") String id) {
 		postService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = PATH_ID, method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@PathVariable("id") String id,@Valid @RequestBody Post post){
 		post.setId(id);
 		postService.update(post);

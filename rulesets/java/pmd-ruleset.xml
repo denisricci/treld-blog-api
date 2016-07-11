@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+
+<ruleset name="PMD-Rules">
+  <description>
+	The rulesets we want to use in pmd. For a detailed description of pmd rulesets: http://pmd.sourceforge.net/rules/index.html
+  </description>
+  
+  
+  
+  <rule ref="rulesets/java/pmd/basic.xml/BooleanInstantiation">						            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/basic.xml/CollapsibleIfStatements">					            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/basic.xml/DoubleCheckedLocking">						            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/basic.xml/ForLoopShouldBeWhileLoop">					            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/basic.xml/JumbledIncrementer">						            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/basic.xml/OverrideBothEqualsAndHashcode">			            <priority>1</priority></rule> 
+  <rule ref="rulesets/java/pmd/basic.xml/ReturnFromFinallyBlock">					            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/basic.xml/UnconditionalIfStatement">					            <priority>5</priority></rule> 
+  
+  <rule ref="rulesets/java/pmd/design.xml/UseUtilityClass">                                     <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/design.xml/SimplifyBooleanReturns">                              <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/SimplifyBooleanExpressions">                          <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/SwitchStmtsShouldHaveDefault">                        <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/AvoidDeeplyNestedIfStmts">                            <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/AvoidReassigningParameters">                          <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/SwitchDensity">                                       <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/ConstructorCallsOverridableMethod">                   <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/AccessorClassGeneration">                             <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/FinalFieldCouldBeStatic">                             <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/ConstructorCallsOverridableMethod">                   <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/ConstructorCallsOverridableMethod">                   <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/ConstructorCallsOverridableMethod">                   <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/CloseResource">                                       <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/DefaultLabelNotLastInSwitchStmt">                     <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/NonCaseLabelInSwitchStatement">                       <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/BadComparison">                                       <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/EqualsNull">                                          <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/InstantiationToGetClass">                             <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/IdempotentOperations">                                <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/SimpleDateFormatNeedsLocale">                         <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/AvoidProtectedFieldInFinalClass">                     <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/AssignmentToNonFinalStatic">                          <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/MissingStaticMethodInNonInstantiatableClass">         <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/AvoidSynchronizedAtMethodLevel">                      <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/MissingBreakInSwitch">                                <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/UseNotifyAllInsteadOfNotify">                         <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/AvoidInstanceofChecksInCatchClause">                  <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/AbstractClassWithoutAbstractMethod">                  <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/SimplifyConditional">                                 <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/PositionLiteralsFirstInComparisons">                  <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/PositionLiteralsFirstInCaseInsensitiveComparisons">   <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/UnnecessaryLocalBeforeReturn">                        <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/NonThreadSafeSingleton">                              <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/AvoidConstantsInterface">                             <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/UnsynchronizedStaticDateFormatter">                   <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/PreserveStackTrace">                                  <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/UseCollectionIsEmpty">                                <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/ClassWithOnlyPrivateConstructorsShouldBeFinal">       <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/ReturnEmptyArrayRatherThanNull">                      <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/AbstractClassWithoutAnyMethod">                       <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/TooFewBranchesForASwitchStatement">                   <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/LogicInversion">                                      <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/FieldDeclarationsShouldBeAtStartOfClass">             <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/GodClass">                                            <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/design.xml/AvoidProtectedMethodInFinalClassNotExtending">        <priority>5</priority></rule>
+  
+  <rule ref="rulesets/java/pmd/empty.xml/EmptyCatchBlock">							            <priority>1</priority></rule> 
+  <rule ref="rulesets/java/pmd/empty.xml/EmptyFinallyBlock">						            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/empty.xml/EmptyIfStmt">								            <priority>1</priority></rule> 
+  <rule ref="rulesets/java/pmd/empty.xml/EmptyStatementNotInLoop">					            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/empty.xml/EmptyStaticInitializer">					            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/empty.xml/EmptySwitchStatements">					            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/empty.xml/EmptySynchronizedBlock">					            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/empty.xml/EmptyTryBlock">							            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/empty.xml/EmptyWhileStmt">							            <priority>5</priority></rule> 
+    
+  <rule ref="rulesets/java/pmd/unnecessary.xml/UnnecessaryConversionTemporary">		            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/unnecessary.xml/UnnecessaryFinalModifier">			            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/unnecessary.xml/UnnecessaryReturn">					            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/unnecessary.xml/UselessOverridingMethod">			            <priority>5</priority></rule> 
+  
+  <rule ref="rulesets/java/pmd/clone.xml/CloneMethodMustImplementCloneable">		            <priority>1</priority></rule> 
+  <rule ref="rulesets/java/pmd/clone.xml/CloneThrowsCloneNotSupportedException">	            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/clone.xml/ProperCloneImplementation">				            <priority>5</priority></rule> 
+ 
+  <rule ref="rulesets/java/pmd/codesize.xml/CyclomaticComplexity">					            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/codesize.xml/ExcessiveClassLength">					            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/codesize.xml/ExcessiveMethodLength">					            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/codesize.xml/ExcessiveParameterList">				            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/codesize.xml/ExcessivePublicCount">					            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/codesize.xml/TooManyFields">							            <priority>5</priority></rule> 
+  
+  <rule ref="rulesets/java/pmd/controversial.xml/UnnecessaryConstructor"> 			            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/controversial.xml/NullAssignment"> 					            <priority>5</priority></rule> 
+  
+  <rule ref="rulesets/java/pmd/coupling.xml/CouplingBetweenObjects">				            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/coupling.xml/ExcessiveImports">						            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/coupling.xml/LooseCoupling">							            <priority>5</priority></rule> 
+  
+  <rule ref="rulesets/java/pmd/finalizers.xml/EmptyFinalizer">						            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/finalizers.xml/FinalizeOnlyCallsSuperFinalize">		            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/finalizers.xml/FinalizeOverloaded">					            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/finalizers.xml/FinalizeDoesNotCallSuperFinalize">	            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/finalizers.xml/FinalizeShouldBeProtected">			            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/finalizers.xml/AvoidCallingFinalize">				            <priority>5</priority></rule> 
+  
+  <rule ref="rulesets/java/pmd/imports.xml/DuplicateImports">						            <priority>1</priority></rule> 
+  <rule ref="rulesets/java/pmd/imports.xml/DontImportJavaLang">						            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/imports.xml/UnusedImports">							            <priority>1</priority></rule> 
+  <rule ref="rulesets/java/pmd/imports.xml/ImportFromSamePackage">					            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/strings.xml/StringToString"> 						            <priority>1</priority></rule> 
+  <rule ref="rulesets/java/pmd/strings.xml/StringInstantiation"> 					            <priority>5</priority></rule> 
+
+  <rule ref="rulesets/java/pmd/sunsecure.xml/MethodReturnsInternalArray">			            <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/sunsecure.xml/ArrayIsStoredDirectly">				            <priority>5</priority></rule> 
+  
+  <rule ref="rulesets/java/pmd/unusedcode.xml/UnusedLocalVariable">					            <priority>1</priority></rule>
+  <rule ref="rulesets/java/pmd/unusedcode.xml/UnusedPrivateField">					            <priority>1</priority></rule>
+  <rule ref="rulesets/java/pmd/unusedcode.xml/UnusedPrivateMethod">					            <priority>1</priority></rule>
+  <rule ref="rulesets/java/pmd/unusedcode.xml/UnusedFormalParameter">                           <priority>1</priority></rule>
+  
+  <rule ref="rulesets/java/pmd/logging-java.xml/MoreThanOneLogger"> 				            <priority>1</priority></rule>
+  <rule ref="rulesets/java/pmd/logging-java.xml/LoggerIsNotStaticFinal"> 			            <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/logging-java.xml/SystemPrintln"> 					            <priority>1</priority></rule>
+  <rule ref="rulesets/java/pmd/logging-java.xml/AvoidPrintStackTrace"> 				            <priority>5</priority></rule>
+  
+  <rule ref="rulesets/java/pmd/logging-jakarta-commons.xml/UseCorrectExceptionLogging">         <priority>5</priority></rule>
+  
+  <rule ref="rulesets/java/pmd/optimizations.xml/UseStringBufferForStringAppends"> 	            <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/optimizations.xml/UseArraysAsList"> 					            <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/optimizations.xml/AvoidArrayLoops"> 					            <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/optimizations.xml/UnnecessaryWrapperObjectCreation">             <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/optimizations.xml/AddEmptyString"> 					            <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/optimizations.xml/PrematureDeclaration"> 			            <priority>5</priority></rule>
+  
+  <rule ref="rulesets/java/pmd/strictexception.xml/AvoidCatchingThrowable"> 		            <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/strictexception.xml/SignatureDeclareThrowsException">            <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/strictexception.xml/ExceptionAsFlowControl"> 		            <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/strictexception.xml/AvoidCatchingNPE"> 				            <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/strictexception.xml/AvoidThrowingRawExceptionTypes">             <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/strictexception.xml/AvoidThrowingNullPointerException">          <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/strictexception.xml/AvoidRethrowingException"> 		            <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/strictexception.xml/DoNotExtendJavaLangError"> 		            <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/strictexception.xml/DoNotThrowExceptionInFinally"> 				<priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/strictexception.xml/AvoidThrowingNewInstanceOfSameException">	<priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/strictexception.xml/AvoidLosingExceptionInformation"> 			<priority>5</priority></rule>
+  
+  <rule ref="rulesets/java/pmd/strings.xml/AvoidDuplicateLiterals">                              <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/strings.xml/StringInstantiation">                                 <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/strings.xml/StringToString">                                      <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/strings.xml/InefficientStringBuffering">                          <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/strings.xml/UnnecessaryCaseChange">                               <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/strings.xml/UseStringBufferLength">                               <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/strings.xml/AppendCharacterWithChar">                             <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/strings.xml/ConsecutiveAppendsShouldReuse">                       <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/strings.xml/ConsecutiveLiteralAppends">                           <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/strings.xml/UseIndexOfChar">                                      <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/strings.xml/InefficientEmptyStringCheck">                         <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/strings.xml/InsufficientStringBufferDeclaration">                 <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/strings.xml/UselessStringValueOf">                                <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/strings.xml/StringBufferInstantiationWithChar">                   <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/strings.xml/UseEqualsToCompareStrings">                           <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/strings.xml/AvoidStringBufferField">                              <priority>5</priority></rule>     
+  
+  <rule ref="rulesets/java/pmd/sunsecure.xml/MethodReturnsInternalArray">                       <priority>5</priority></rule>     
+  <rule ref="rulesets/java/pmd/sunsecure.xml/ArrayIsStoredDirectly">                            <priority>5</priority></rule>     
+  
+  <rule ref="rulesets/java/pmd/typeresolution.xml/LooseCoupling">                               <priority>5</priority></rule>
+  <rule ref="rulesets/java/pmd/typeresolution.xml/CloneMethodMustImplementCloneable">           <priority>5</priority></rule> 
+  <rule ref="rulesets/java/pmd/typeresolution.xml/UnusedImports">                               <priority>5</priority></rule>
+</ruleset>
