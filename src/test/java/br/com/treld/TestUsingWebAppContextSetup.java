@@ -29,7 +29,7 @@ public class TestUsingWebAppContextSetup extends TreldBlogApplicationTests {
 
 	@Test
 	public void validatePost() throws Exception {
-		ResultActions resultado = mockMvc.perform(post("/login").contentType(MediaType.APPLICATION_FORM_URLENCODED).param("username", "treld")
+		ResultActions resultado = mockMvc.perform(post("/api/login").param("username", "treld")
 				.param("password", "treld")).andExpect(status().isOk());
 		System.out.println(resultado);
 	}
