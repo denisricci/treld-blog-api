@@ -133,7 +133,7 @@
   <rule ref="rulesets/java/pmd/optimizations.xml/PrematureDeclaration"> 			            <priority>5</priority></rule>
   
   <rule ref="rulesets/java/pmd/strictexception.xml/AvoidCatchingThrowable"> 		            <priority>5</priority></rule>
-  <rule ref="rulesets/java/pmd/strictexception.xml/SignatureDeclareThrowsException">            <priority>5</priority></rule>
+  <!--<rule ref="rulesets/java/pmd/strictexception.xml/SignatureDeclareThrowsException">            <priority>5</priority></rule>-->
   <rule ref="rulesets/java/pmd/strictexception.xml/ExceptionAsFlowControl"> 		            <priority>5</priority></rule>
   <rule ref="rulesets/java/pmd/strictexception.xml/AvoidCatchingNPE"> 				            <priority>5</priority></rule>
   <rule ref="rulesets/java/pmd/strictexception.xml/AvoidThrowingRawExceptionTypes">             <priority>5</priority></rule>
