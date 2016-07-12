@@ -1,31 +1,17 @@
 package br.com.treld.services;
 
-import br.com.treld.TreldBlogApplication;
-import br.com.treld.TreldBlogApplicationTests;
 import br.com.treld.TreldTest;
 import br.com.treld.model.Post;
 import br.com.treld.repository.PostRepository;
-import br.com.treld.services.impl.DefaultPostService;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 
-import javax.annotation.Resource;
-
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
 /**

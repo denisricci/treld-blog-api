@@ -1,22 +1,20 @@
 package br.com.treld.repository;
 
-import static org.junit.Assert.assertFalse;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
+import br.com.treld.TreldBlogApplicationTests;
+import br.com.treld.model.Post;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import br.com.treld.TreldBlogApplicationTests;
-import br.com.treld.model.Post;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import static org.junit.Assert.assertFalse;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = TreldBlogApplicationTests.class)
