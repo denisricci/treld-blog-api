@@ -1,0 +1,92 @@
+{
+	"variables": [],
+	"info": {
+		"name": "TRELD-BACKEND",
+		"_postman_id": "827b59dc-227b-34ea-eccd-1048efb394f3",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post",
+			"description": "",
+			"item": [
+				{
+					"name": "Page",
+					"request": {
+						"url": "localhost:8080/api/post/page/{{PAGE_NUMBER}}",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Post by id",
+					"request": {
+						"url": "localhost:8080/api/post/{{POST_ID}}",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Save Post",
+					"request": {
+						"url": "localhost:8080/api/post/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Post tittle\",\n  \"body\": \"Body of the post\",\n  \"creationDate\": 1593720078258,\n  \"publicationDate\": 1593720078258\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"url": "localhost:8080/login",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "treld",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "treld",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

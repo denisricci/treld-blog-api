@@ -36,6 +36,8 @@ public class PostRepositoryTest {
 
 	@Test
 	public void findAllPostOrderedByPublicationDate() {
+		repository.deleteAll();
+
 		Post post1 = buildPost();
 		post1.setPublicationDate(getCurrentDatePlusParam(200));
 		Post post2 = buildPost();

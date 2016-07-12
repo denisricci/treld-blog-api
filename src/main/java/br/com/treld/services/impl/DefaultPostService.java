@@ -16,25 +16,29 @@ import java.util.List;
 @Component
 public class DefaultPostService implements PostService {
 
-	@Autowired
-	private PostRepository postRepository;
+    @Autowired
+    private PostRepository postRepository;
 
-	@Override
-	public Post save(Post post) {
-		Post postSaved = postRepository.save(post);
-		return postSaved;
-	}
+    @Override
+    public Post save(Post post) {
+        return postRepository.save(post);
+    }
 
-	@Override
-	public Post findById(String id) {
-		return postRepository.findOne(id);
-	}
+    @Override
+    public Post findById(String id) {
+        return postRepository.findOne(id);
+    }
 
-	@Override
-	public List<Post> getPage(int pageNumber) {
-		Pageable page = new PageRequest(pageNumber - 1, 20);
-		return postRepository.findAllByOrderByPublicationDateDesc(page).getContent();
-	}
+    @Override
+    public List<Post> getPage(int pageNumber) {
+        return getPage(pageNumber, 20);
+    }
+
+    @Override
+    public List<Post> getPage(int pageIndex, int pageSize) {
+        Pageable page = new PageRequest(pageIndex-1, pageSize);
+        return postRepository.findAllByOrderByPublicationDateDesc(page).getContent();
+    }
 
 	@Override
 	public void delete(String id) {

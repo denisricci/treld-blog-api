@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import br.com.treld.model.Post;
 import br.com.treld.services.PostService;
 
@@ -34,12 +33,11 @@ public class PostController {
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
-	public ResponseEntity<Void> save(@Valid Post post) {
+	public ResponseEntity<Post> save(@Valid @RequestBody Post post) {
 		Post postSaved = postService.save(post);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(postSaved.getId())
 				.toUri();
-		//No rest, normalmente enviamos ao cliente o endereço de onde ele pode consultar o recurso criado. Eduardo
-		return ResponseEntity.created(uri).build();
+		return ResponseEntity.created(uri).body(postSaved);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
