@@ -1,6 +1,5 @@
 # Java files
 *.class
-*.jar
 
 # generated files
 bin/
