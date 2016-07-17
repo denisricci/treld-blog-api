@@ -14,7 +14,7 @@
 				{
 					"name": "Page",
 					"request": {
-						"url": "localhost:8080/api/post/page/{{PAGE_NUMBER}}",
+						"url": "{{URL}}/api/post/page/{{PAGE_NUMBER}}",
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -28,7 +28,7 @@
 				{
 					"name": "Get Post by id",
 					"request": {
-						"url": "localhost:8080/api/post/{{POST_ID}}",
+						"url": "{{URL}}/api/post/{{POST_ID}}",
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -42,7 +42,7 @@
 				{
 					"name": "Save Post",
 					"request": {
-						"url": "localhost:8080/api/post/",
+						"url": "{{URL}}/api/post/",
 						"method": "POST",
 						"header": [
 							{
@@ -53,7 +53,41 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"title\": \"Post tittle\",\n  \"body\": \"Body of the post\",\n  \"creationDate\": 1593720078258,\n  \"publicationDate\": 1593720078258\n}"
+							"raw": "{\n  \"title\": \"title\",\n  \"body\": \"body of the post\",\n  \"tags\": [\"java\", \"primefaces\"],\n  \"category\" : \"Programacao\",\n  \"creationDate\": 1593720078258,\n  \"publicationDate\": 1593720078258\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Post",
+					"request": {
+						"url": "{{URL}}/api/post/{{POST_ID}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"title\",\n  \"body\": \"body of the post\",\n  \"tags\": [\n            {\"code\" : \"java\"}, \n            {\"code\" : \"primefaces\"}\n        ],\n  \"category\" : {\"code\" : \"Programacao\"},\n  \"creationDate\": 1593720078258,\n  \"publicationDate\": 1593720078258\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Post",
+					"request": {
+						"url": "{{URL}}/api/post/{{POST_ID}}",
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
 						},
 						"description": ""
 					},
@@ -64,7 +98,7 @@
 		{
 			"name": "Login",
 			"request": {
-				"url": "localhost:8080/login",
+				"url": "{{URL}}/login",
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -72,13 +106,13 @@
 					"formdata": [
 						{
 							"key": "username",
-							"value": "treld",
+							"value": "{{AUTHOR_USERNAME}}",
 							"type": "text",
 							"enabled": true
 						},
 						{
 							"key": "password",
-							"value": "treld",
+							"value": "{{AUTHOR_PASSWORD}}",
 							"type": "text",
 							"enabled": true
 						}

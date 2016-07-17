@@ -23,8 +23,8 @@ public class Post {
 	private String body;
 	private Date creationDate;
 	private Date publicationDate;
-	private List<Tag> tags;
-	private Category category;
+	private List<String> tags;
+	private String category;
 
 	@Override
 	public String toString() {
@@ -65,19 +65,19 @@ public class Post {
 		this.publicationDate = publicationDate;
 	}
 
-	public List<Tag> getTags() {
+	public List<String> getTags() {
 		return tags;
 	}
 
-	public void setTags(List<Tag> tags) {
+	public void setTags(List<String> tags) {
 		this.tags = tags;
 	}
 
-	public Category getCategory() {
+	public String getCategory() {
 		return category;
 	}
 
-	public void setCategory(Category category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 }
