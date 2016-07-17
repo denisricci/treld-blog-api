@@ -1,0 +1,126 @@
+{
+	"variables": [],
+	"info": {
+		"name": "TRELD-BACKEND",
+		"_postman_id": "827b59dc-227b-34ea-eccd-1048efb394f3",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post",
+			"description": "",
+			"item": [
+				{
+					"name": "Page",
+					"request": {
+						"url": "{{URL}}/api/post/page/{{PAGE_NUMBER}}",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Post by id",
+					"request": {
+						"url": "{{URL}}/api/post/{{POST_ID}}",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Save Post",
+					"request": {
+						"url": "{{URL}}/api/post/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"title\",\n  \"body\": \"body of the post\",\n  \"tags\": [\"java\", \"primefaces\"],\n  \"category\" : \"Programacao\",\n  \"creationDate\": 1593720078258,\n  \"publicationDate\": 1593720078258\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Post",
+					"request": {
+						"url": "{{URL}}/api/post/{{POST_ID}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"title\",\n  \"body\": \"body of the post\",\n  \"tags\": [\n            {\"code\" : \"java\"}, \n            {\"code\" : \"primefaces\"}\n        ],\n  \"category\" : {\"code\" : \"Programacao\"},\n  \"creationDate\": 1593720078258,\n  \"publicationDate\": 1593720078258\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Post",
+					"request": {
+						"url": "{{URL}}/api/post/{{POST_ID}}",
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"url": "{{URL}}/login",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "{{AUTHOR_USERNAME}}",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "{{AUTHOR_PASSWORD}}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
