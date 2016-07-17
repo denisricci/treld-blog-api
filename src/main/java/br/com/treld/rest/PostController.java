@@ -1,21 +1,17 @@
 package br.com.treld.rest;
 
-import java.net.URI;
-import java.util.List;
-
-import javax.validation.Valid;
-
+import br.com.treld.config.security.RequiresAuthorAuthentication;
+import br.com.treld.model.Post;
+import br.com.treld.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import br.com.treld.model.Post;
-import br.com.treld.services.PostService;
+
+import javax.validation.Valid;
+import java.net.URI;
+import java.util.List;
 
 /**
  * Created by rsouza on 29/06/16.
@@ -33,6 +29,13 @@ public class PostController {
 		return ResponseEntity.status(HttpStatus.OK).body(postService.getPage(page));
 	}
 
+	@RequestMapping(value = PATH_ID, method = RequestMethod.GET)
+	public ResponseEntity<Post> get(@PathVariable("id") String id) {
+		Post post = postService.findById(id);
+		return ResponseEntity.status(HttpStatus.OK).body(post);
+	}
+
+	@RequiresAuthorAuthentication
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public ResponseEntity<Post> save(@Valid @RequestBody Post post) {
 		Post postSaved = postService.save(post);
@@ -41,18 +44,14 @@ public class PostController {
 		return ResponseEntity.created(uri).body(postSaved);
 	}
 
-	@RequestMapping(value = PATH_ID, method = RequestMethod.GET)
-	public ResponseEntity<Post> get(@PathVariable("id") String id) {
-		Post post = postService.findById(id);
-		return ResponseEntity.status(HttpStatus.OK).body(post);
-	}
-
+	@RequiresAuthorAuthentication
 	@RequestMapping(value = PATH_ID, method = RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable("id") String id) {
 		postService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
-	
+
+	@RequiresAuthorAuthentication
 	@RequestMapping(value = PATH_ID, method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@PathVariable("id") String id,@Valid @RequestBody Post post){
 		post.setId(id);

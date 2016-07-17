@@ -1,6 +1,7 @@
 buildscript {
 	ext {
 		springBootVersion = '1.3.5.RELEASE'
+		aspectjrtVersion  = '1.8.9'
 	}
 	repositories {
 		mavenCentral()
@@ -35,6 +36,11 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-devtools")
 	compile(group: 'org.apache.commons', name: 'commons-lang3', version: '3.0')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+
+	// Spring security dependencies
+	compile group: 'org.springframework.security', name: 'spring-security-aspects', version: '3.1.5.RELEASE'
+	compile group: 'org.aspectj', name: 'aspectjrt', version: aspectjrtVersion
+	compile group: 'org.aspectj', name: 'aspectjtools', version: aspectjrtVersion
 	
 }
 
