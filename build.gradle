@@ -38,6 +38,9 @@ dependencies {
 	
 }
 
+task stage {
+  dependsOn build
+}
 
 eclipse {
 	classpath {
