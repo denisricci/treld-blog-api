@@ -7,7 +7,9 @@ import org.springframework.security.core.GrantedAuthority;
  */
 public class AuthorGrantedAuthority implements GrantedAuthority {
 
-    public static final String AUTHOR_AUTHORITY = "ROLE_AUTHOR";
+	private static final long serialVersionUID = 1L;
+	
+	public static final String AUTHOR_AUTHORITY = "ROLE_AUTHOR";
 
     @Override
     public String getAuthority() {

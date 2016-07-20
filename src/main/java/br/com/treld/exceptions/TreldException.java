@@ -5,7 +5,9 @@ package br.com.treld.exceptions;
  */
 public class TreldException extends Exception {
 
-    public TreldException (){
+	private static final long serialVersionUID = 1L;
+
+	public TreldException (){
         super();
     }
 

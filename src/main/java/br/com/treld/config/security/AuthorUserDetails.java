@@ -12,7 +12,9 @@ import java.util.List;
  */
 public class AuthorUserDetails extends User {
 
-    private static final List<GrantedAuthority> AUTHORITIES = Arrays.asList(new AuthorGrantedAuthority());
+	private static final long serialVersionUID = 1L;
+	
+	private static final List<GrantedAuthority> AUTHORITIES = Arrays.asList(new AuthorGrantedAuthority());
 
     public AuthorUserDetails(Author author) {
         super(author.getUsername(), author.getPassword(), AUTHORITIES);
