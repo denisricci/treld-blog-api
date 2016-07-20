@@ -58,8 +58,7 @@ public class TestUsingWebAppContextSetup {
 	public void validateUriPost() throws Exception {
 		String post = " { \"title\":\"Creating rest api\", \"body\":\"open your ide...\" } ";
 		ResultActions result = mockMvc.perform(post("/api/post/").content(post).contentType(MediaType.APPLICATION_JSON)
-				.session((MockHttpSession) session)).andExpect(status().isCreated());
-		System.out.println(result.andReturn().getResponse().getRedirectedUrl());
+				.session((MockHttpSession) session)).andExpect(status().isCreated());		
 		String localResourceCreated = result.andReturn().getResponse().getRedirectedUrl();
 		ResultActions resultSearch = mockMvc.perform(get(localResourceCreated).session((MockHttpSession) session));
 		String responseString = resultSearch.andReturn().getResponse().getContentAsString();

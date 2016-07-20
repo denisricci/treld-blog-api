@@ -53,9 +53,7 @@ public class Post {
 			// remove accents
 			String norm = Normalizer.normalize(this.url, Normalizer.Form.NFD);
 			this.url = norm.replaceAll("[^\\p{ASCII}]", "");
-		} else {
-			this.url = null;
-		}
+		} 
 
 		return this.url;
 	}
