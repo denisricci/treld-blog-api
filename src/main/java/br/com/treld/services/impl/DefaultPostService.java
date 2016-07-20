@@ -28,6 +28,11 @@ public class DefaultPostService implements PostService {
     public Post findById(String id) {
         return postRepository.findOne(id);
     }
+    
+    @Override
+	public Post findByUrl(String url) {		
+		return postRepository.findByUrl(url);
+	}
 
     @Override
     public List<Post> getPage(int pageNumber) {

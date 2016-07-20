@@ -21,6 +21,8 @@ import java.util.List;
 public class PostController {
 
 	public static final String PATH_ID = "/{id}";
+	public static final String PATH_URL = "/url/{url}";
+	
 	@Autowired
 	private PostService postService;
 
@@ -33,6 +35,15 @@ public class PostController {
 	public ResponseEntity<Post> get(@PathVariable("id") String id) {
 		Post post = postService.findById(id);
 		return ResponseEntity.status(HttpStatus.OK).body(post);
+	}
+	
+	@RequestMapping(value = PATH_URL, method = RequestMethod.GET)
+	public ResponseEntity<Post> findByUrl(@PathVariable("url") String url) {
+		Post post = postService.findByUrl(url);
+		if(post !=null){
+			return ResponseEntity.status(HttpStatus.OK).body(post);
+		}		
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@RequiresAuthorAuthentication
@@ -58,5 +69,4 @@ public class PostController {
 		postService.update(post);
 		return ResponseEntity.noContent().build();
 	}
-
 }

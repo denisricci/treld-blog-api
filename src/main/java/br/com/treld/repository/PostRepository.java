@@ -9,5 +9,6 @@ import br.com.treld.model.Post;
 public interface PostRepository extends MongoRepository<Post, String>{
 
     Page<Post> findAllByOrderByPublicationDateDesc(Pageable pageable);
+    Post findByUrl(String url);
 
 }

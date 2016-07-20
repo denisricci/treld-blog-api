@@ -5,7 +5,8 @@ db.posts.insert({
       "publicationDate":new Date(2016-07-10),
       "tags":"java, web, mongodb",
       "category":"Java",
-	  "author": "denisricci"
+	  "author": "denisricci",
+	  "url":"titulo-do-post-1"
    });
    
 db.posts.insert({        
@@ -15,7 +16,8 @@ db.posts.insert({
       "publicationDate":new Date(2016-07-11),
       "tags":"C#, aspx, sqlserver",
       "category":"C#",
-	  "author": "denisricci"
+	  "author": "denisricci",
+	  "url":"titulo-do-post-2"
    });
    
    
@@ -26,7 +28,8 @@ db.posts.insert({
       "publicationDate":new Date(2016-07-11),
       "tags":"banana, maça, morango",
       "category":"Feira",
-	  "author": "denisricci"
+	  "author": "denisricci",
+	  "url":"titulo-do-post-3"
 });
 
 db.posts.insert({        
@@ -36,5 +39,6 @@ db.posts.insert({
       "publicationDate":new Date(2016-07-12),
       "tags":"Goku, Gohan, Cell",
       "category":"DBZ",
-	  "author": "denisricci"
+	  "author": "denisricci",
+	  "url":"titulo-do-post-4"
 });

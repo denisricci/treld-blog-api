@@ -11,6 +11,7 @@ public interface PostService {
 
     Post save(Post post);
     Post findById(String id);
+    Post findByUrl(String url);
     List<Post> getPage(int page);
     List<Post> getPage(int pageIndex, int pageSize);
     void delete(String id);

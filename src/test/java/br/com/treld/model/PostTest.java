@@ -13,11 +13,20 @@ public class PostTest {
 		assertEquals("testing-feature-that-build-url-for-post", url);				
 	}
 	
+	@Test
 	public void buildUrlWithoutAccentuationTest(){
 		Post post =  new Post();
-		post.setTitle("Está frase está em      português por causa dos acentos     ");
+		post.setTitle("Está frase está em      português por causa dos acentos");
 		String url = post.buildUrl();
-		assertEquals("testing-feature-that-build-url-for-post", url);
+		assertEquals("esta-frase-esta-em-portugues-por-causa-dos-acentos", url);
+	}
+	
+	@Test
+	public void buildUrlWithSpaceAtTheEndTest(){
+		Post post =  new Post();
+		post.setTitle("  Está frase está em      português por causa dos acentos        ");
+		String url = post.buildUrl();
+		assertEquals("esta-frase-esta-em-portugues-por-causa-dos-acentos", url);
 	}
 	
 }
