@@ -27,6 +27,7 @@ public class Post {
 	private List<String> tags;
 	private String category;	
 	private String author;
+	private String url;
 		
 	@Override
 	public String toString() {
@@ -34,6 +35,21 @@ public class Post {
 			return title;
 
 		return super.toString();
+	}
+	
+	public void addTag(String tag){
+		if(this.tags == null){
+			tags = new ArrayList<String>();
+		}
+		
+		this.tags.add(tag);
+	}
+	
+	public String buildUrl(){		
+		if(this.title !=null){
+			this.url = this.title.replaceAll("[ ]{1,}", "-").toLowerCase();
+		}
+		return url;
 	}
 
 	public String getId() {
@@ -66,16 +82,7 @@ public class Post {
 	public void setPublicationDate(Date publicationDate) {
 		this.publicationDate = publicationDate;
 	}
-	
-	
-	public void addTag(String tag){
-		if(this.tags == null){
-			tags = new ArrayList<String>();
-		}
-		
-		this.tags.add(tag);
-	}
-
+			
 	public List<String> getTags() {
 		return tags;
 	}
@@ -98,5 +105,13 @@ public class Post {
 
 	public void setAuthor(String author) {
 		this.author = author;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 }
