@@ -1,4 +1,4 @@
-package br.com.treld.config;
+package br.com.treld.config.security;
 
 import br.com.treld.exceptions.TreldException;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package br.com.treld.config;
+package br.com.treld.config.security;
 
 import java.io.IOException;
 

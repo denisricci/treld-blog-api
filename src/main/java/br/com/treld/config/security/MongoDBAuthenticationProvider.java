@@ -1,6 +1,5 @@
-package br.com.treld.config;
+package br.com.treld.config.security;
 
-import br.com.treld.config.security.AuthorUserDetails;
 import br.com.treld.model.Author;
 import br.com.treld.repository.AuthorRepository;
 import org.slf4j.Logger;

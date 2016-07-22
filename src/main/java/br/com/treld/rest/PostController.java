@@ -1,17 +1,24 @@
 package br.com.treld.rest;
 
-import br.com.treld.config.security.RequiresAuthorAuthentication;
-import br.com.treld.model.Post;
-import br.com.treld.services.PostService;
+import java.net.URI;
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.validation.Valid;
-import java.net.URI;
-import java.util.List;
+import br.com.treld.config.security.RequiresAuthorAuthentication;
+import br.com.treld.model.Post;
+import br.com.treld.services.PostService;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * Created by rsouza on 29/06/16.
@@ -26,7 +33,8 @@ public class PostController {
 	@Autowired
 	private PostService postService;
 
-	@RequestMapping(value = "/page/{page}", method = RequestMethod.GET)
+	@ApiOperation(value="findAllPaginated", nickname="findAllPaginated")	
+	@RequestMapping(value = "/page/{page}", method = RequestMethod.GET)	
 	public ResponseEntity<List<Post>> getAll(@PathVariable("page") int page) {
 		return ResponseEntity.status(HttpStatus.OK).body(postService.getPage(page));
 	}
