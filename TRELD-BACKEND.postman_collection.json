@@ -73,7 +73,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"title\": \"title\",\n  \"body\": \"body of the post\",\n  \"tags\": [\n            {\"code\" : \"java\"}, \n            {\"code\" : \"primefaces\"}\n        ],\n  \"category\" : {\"code\" : \"Programacao\"},\n  \"creationDate\": 1593720078258,\n  \"publicationDate\": 1593720078258\n}"
+							"raw": "{\n  \"title\": \"title\",\n  \"body\": \"body of the post\",\n  \"tags\": [\"java\",  \"primefaces\"],\n  \"category\" : \"Programacao\",\n  \"creationDate\": 1593720078258,\n  \"publicationDate\": 1593720078258\n}"
 						},
 						"description": ""
 					},
@@ -90,6 +90,47 @@
 							"formdata": []
 						},
 						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Resource",
+			"description": "",
+			"item": [
+				{
+					"name": "Get Resource",
+					"request": {
+						"url": "{{URL}}/api/resource/{{RESOURCE_ID}}",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Resource upload",
+					"request": {
+						"url": "{{URL}}/api/resource",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"value": "",
+									"type": "file",
+									"enabled": true
+								}
+							]
+						},
+						"description": "Upload a resource to the server"
 					},
 					"response": []
 				}
