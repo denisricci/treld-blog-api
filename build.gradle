@@ -37,10 +37,11 @@ dependencies {
 	compile("io.springfox:springfox-swagger2:2.0.2")
     compile("io.springfox:springfox-swagger-ui:2.0.2")
 	compile(group: 'org.apache.commons', name: 'commons-lang3', version: '3.0')
-	
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile group: 'commons-io', name: 'commons-io', version: '2.5'
 
-	// Spring security dependencies
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+
+    // Spring security dependencies
 	compile group: 'org.springframework.security', name: 'spring-security-aspects', version: '3.1.5.RELEASE'
 	compile group: 'org.aspectj', name: 'aspectjrt', version: aspectjrtVersion
 	compile group: 'org.aspectj', name: 'aspectjtools', version: aspectjrtVersion

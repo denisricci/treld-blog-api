@@ -21,3 +21,6 @@ bin/
 .gradletasknamecache
 .gradle/
 build/
+
+#upload base directory
+base-dir/
