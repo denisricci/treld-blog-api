@@ -103,7 +103,9 @@ public class PostServiceTest {
         Calendar date = Calendar.getInstance();
         date.set(Calendar.YEAR, year);
         Post post = new Post();
+        post.setTitle("Post from " + date.toString());
         post.setPublicationDate(date.getTime());
+        post.buildUrl();
         return post;
     }
 }
