@@ -41,4 +41,9 @@ db.posts.insert({
       "category":"DBZ",
 	  "author": "denisricci",
 	  "url":"titulo-do-post-4"
+})
+
+db.authors.insert({
+    "_id" : "treld",
+    "password" : "treld"
 });
