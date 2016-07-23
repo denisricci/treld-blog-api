@@ -26,7 +26,7 @@ public class PostRepositoryTest {
 
 	@Test
 	public void testingPostPersistence() {
-		Post postToPersist = buildPost();
+		Post postToPersist = buildPost(1);
 		repository.save(postToPersist);
 		Post postPersisted = repository.findOne(postToPersist.getId());		
 		assertFalse(!comparePosts(postToPersist, postPersisted));
@@ -37,15 +37,15 @@ public class PostRepositoryTest {
 	public void findAllPostOrderedByPublicationDate() {
 		repository.deleteAll();
 
-		Post post1 = buildPost();
+		Post post1 = buildPost(1);
 		post1.setPublicationDate(getCurrentDatePlusParam(200));
-		Post post2 = buildPost();
+		Post post2 = buildPost(2);
 		post2.setPublicationDate(getCurrentDatePlusParam(300));
-		Post post3 = buildPost();
+		Post post3 = buildPost(3);
 		post3.setPublicationDate(getCurrentDatePlusParam(400));
-		Post post4 = buildPost();
+		Post post4 = buildPost(4);
 		post4.setPublicationDate(getCurrentDatePlusParam(500));
-		Post post5 = buildPost();
+		Post post5 = buildPost(5);
 		post5.setPublicationDate(getCurrentDatePlusParam(600));
 
 		List<Post> unOrderedList = new ArrayList<>();
@@ -86,12 +86,13 @@ public class PostRepositoryTest {
 		return new Date(totalMilisecond);
 	}
 
-	private Post buildPost() {
+	private Post buildPost(int append) {
 		Post post = new Post();
-		post.setTitle("Test post");
+		post.setTitle("Test post " + append);
 		post.setBody("This post was created to test with jUnit");
 		post.setCreationDate(new Date());
 		post.setPublicationDate(new Date());
+		post.buildUrl();
 		return post;
 	}
 }
