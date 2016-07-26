@@ -29,28 +29,32 @@ public class PostController {
 
 	public static final String PATH_ID = "/{id}";
 	public static final String PATH_URL = "/url/{url}";
-	
+
 	@Autowired
 	private PostService postService;
 
-	@ApiOperation(value="findAllPaginated", nickname="findAllPaginated")	
-	@RequestMapping(value = "/page/{page}", method = RequestMethod.GET)	
+	@ApiOperation(value = "findAllPaginated", nickname = "findAllPaginated")
+	@RequestMapping(value = "/page/{page}", method = RequestMethod.GET)
 	public ResponseEntity<List<Post>> getAll(@PathVariable("page") int page) {
 		return ResponseEntity.status(HttpStatus.OK).body(postService.getPage(page));
 	}
 
 	@RequestMapping(value = PATH_ID, method = RequestMethod.GET)
-	public ResponseEntity<Post> get(@PathVariable("id") String id) {
+	public ResponseEntity get(@PathVariable("id") String id) {
 		Post post = postService.findById(id);
-		return ResponseEntity.status(HttpStatus.OK).body(post);
+		if (post == null) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		} else {
+			return ResponseEntity.status(HttpStatus.OK).body(post);
+		}
 	}
-	
+
 	@RequestMapping(value = PATH_URL, method = RequestMethod.GET)
 	public ResponseEntity<Post> findByUrl(@PathVariable("url") String url) {
 		Post post = postService.findByUrl(url);
-		if(post !=null){
+		if (post != null) {
 			return ResponseEntity.status(HttpStatus.OK).body(post);
-		}		
+		}
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
@@ -72,7 +76,7 @@ public class PostController {
 
 	@RequiresAuthorAuthentication
 	@RequestMapping(value = PATH_ID, method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@PathVariable("id") String id,@Valid @RequestBody Post post){
+	public ResponseEntity<Void> update(@PathVariable("id") String id, @Valid @RequestBody Post post) {
 		post.setId(id);
 		postService.update(post);
 		return ResponseEntity.noContent().build();
