@@ -1,14 +1,11 @@
 package br.com.treld.rest;
 
 import static org.junit.Assert.assertTrue;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import javax.servlet.Filter;
 import javax.servlet.http.HttpSession;
-import javax.ws.rs.DELETE;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -73,6 +70,15 @@ public class PostControllerTest {
 		String responseString = resultSearch.andReturn().getResponse().getContentAsString();
 		postCreatedInTest = mapper.readValue(responseString, Post.class);
 		assertTrue("Creating rest api".equals(postCreatedInTest.getTitle()));
+	}
+	
+	@Test
+	public void validateModification() throws Exception{
+		String postJson = " { \"title\":\"Creating rest api part 2\", \"body\":\"open your eclipse...\" } ";
+		mockMvc.perform(put("/api/post/"+postCreatedInTest.getId()).session((MockHttpSession) session).content(postJson).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isNoContent());
+		ResultActions resultSearch = mockMvc.perform(get("/api/post/"+postCreatedInTest.getId()).session((MockHttpSession) session)).andExpect(status().isOk());
+		String responseString = resultSearch.andReturn().getResponse().getContentAsString();
+		postCreatedInTest = mapper.readValue(responseString, Post.class);
 	}
 	
 	@Test
