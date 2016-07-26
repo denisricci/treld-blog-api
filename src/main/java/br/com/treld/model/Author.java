@@ -1,5 +1,6 @@
 package br.com.treld.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,7 +11,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Author {
 
 	@Id
+	@NotEmpty(message = "the author most have a username")
 	private String username;
+	@NotEmpty(message = "the author most have a password")
 	private String password;
 
 	public Author(String username, String password) {
