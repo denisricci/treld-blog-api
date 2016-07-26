@@ -1,6 +1,7 @@
 package br.com.treld.services.impl;
 
 import br.com.treld.model.Post;
+import br.com.treld.model.PostsPerPage;
 import br.com.treld.repository.PostRepository;
 import br.com.treld.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,13 +37,18 @@ public class DefaultPostService implements PostService {
 
     @Override
     public List<Post> getPage(int pageNumber) {
-        return getPage(pageNumber, 20);
+        return getPage(pageNumber, 10);
     }
 
     @Override
     public List<Post> getPage(int pageIndex, int pageSize) {
         Pageable page = new PageRequest(pageIndex-1, pageSize);
-        return postRepository.findAllByOrderByPublicationDateDesc(page).getContent();
+        List<Post> posts =  postRepository.findAllByOrderByPublicationDateDesc(page).getContent();
+        PostsPerPage ppp = new PostsPerPage();
+        ppp.setData(posts);
+        ppp.setDraw(pageIndex++);
+        ppp.setRecordsTotal(postRepository.count());
+        return posts;
     }
 
 	@Override
@@ -54,4 +60,7 @@ public class DefaultPostService implements PostService {
 	public void update(Post post) {
 		postRepository.save(post);
 	}
+
+    @Override
+    public Long count() { return postRepository.count(); }
 }

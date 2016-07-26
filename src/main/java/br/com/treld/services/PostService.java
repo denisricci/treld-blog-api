@@ -16,5 +16,6 @@ public interface PostService {
     List<Post> getPage(int pageIndex, int pageSize);
     void delete(String id);
     void update(Post post);
+    Long count();
 
 }
