@@ -35,7 +35,11 @@ public class PostController {
 
 	@ApiOperation(value = "findAllPaginated", nickname = "findAllPaginated")
 	@RequestMapping(value = "/page/{page}", method = RequestMethod.GET)
-	public ResponseEntity<List<Post>> getAll(@PathVariable("page") int page) {
+	public ResponseEntity getAll(@PathVariable("page") int page) {
+		List<Post> posts = postService.getPage(page);
+		if(posts.isEmpty()){
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		}
 		return ResponseEntity.status(HttpStatus.OK).body(postService.getPage(page));
 	}
 
@@ -43,7 +47,7 @@ public class PostController {
 	public ResponseEntity get(@PathVariable("id") String id) {
 		Post post = postService.findById(id);
 		if (post == null) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		} else {
 			return ResponseEntity.status(HttpStatus.OK).body(post);
 		}
@@ -55,7 +59,7 @@ public class PostController {
 		if (post != null) {
 			return ResponseEntity.status(HttpStatus.OK).body(post);
 		}
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
 	@RequiresAuthorAuthentication
