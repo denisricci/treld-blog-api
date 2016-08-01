@@ -42,12 +42,8 @@ public class DefaultPostService implements PostService {
 
     @Override
     public List<Post> getPage(int pageIndex, int pageSize) {
-        Pageable page = new PageRequest(pageIndex-1, pageSize);
+        Pageable page = new PageRequest(pageIndex -1, pageSize);
         List<Post> posts =  postRepository.findAllByOrderByPublicationDateDesc(page).getContent();
-        PostsPerPage ppp = new PostsPerPage();
-        ppp.setData(posts);
-        ppp.setDraw(pageIndex++);
-        ppp.setRecordsTotal(postRepository.count());
         return posts;
     }
 
@@ -62,5 +58,11 @@ public class DefaultPostService implements PostService {
 	}
 
     @Override
-    public Long count() { return postRepository.count(); }
+    public PostsPerPage getPostsPerPage(int page, long draw) {
+        PostsPerPage ppp = new PostsPerPage();
+        ppp.setData(getPage(page, 10));
+        ppp.setDraw(draw);
+        ppp.setRecordsFiltered(postRepository.count());
+        return ppp;
+    }
 }

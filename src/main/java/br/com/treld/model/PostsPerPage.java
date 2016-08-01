@@ -7,10 +7,13 @@ import java.util.List;
  */
 public class PostsPerPage {
 
-    private List<Post> data;
+
 
     private long draw;
     private long recordsTotal;
+    private long recordsFiltered;
+
+    private List<Post> data;
 
     public List<Post> getData() {
         return data;
@@ -34,5 +37,12 @@ public class PostsPerPage {
 
     public void setRecordsTotal(long recordsTotal) {
         this.recordsTotal = recordsTotal;
+    }
+
+    public long getRecordsFiltered(){ return  recordsFiltered; }
+
+    public void setRecordsFiltered(long recordsFiltered){
+        this.recordsFiltered = recordsFiltered;
+        this.recordsTotal = recordsFiltered;
     }
 }

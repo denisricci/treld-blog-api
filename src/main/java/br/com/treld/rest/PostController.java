@@ -4,7 +4,9 @@ import java.net.URI;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.ws.rs.QueryParam;
 
+import br.com.treld.model.PostsPerPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -76,5 +78,11 @@ public class PostController {
 		post.setId(id);
 		postService.update(post);
 		return ResponseEntity.noContent().build();
+	}
+
+	@ApiOperation(value="findAllPaginated", nickname="findAllPaginated")
+	@RequestMapping(value = "/pagePerPage/{page}", method = RequestMethod.GET)
+	public ResponseEntity<PostsPerPage> getPostsInPage(@PathVariable("page") int page, @QueryParam("draw") long draw) {
+		return ResponseEntity.status(HttpStatus.OK).body(postService.getPostsPerPage(page,draw));
 	}
 }

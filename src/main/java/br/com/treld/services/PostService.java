@@ -1,6 +1,7 @@
 package br.com.treld.services;
 
 import br.com.treld.model.Post;
+import br.com.treld.model.PostsPerPage;
 
 import java.util.List;
 
@@ -16,6 +17,5 @@ public interface PostService {
     List<Post> getPage(int pageIndex, int pageSize);
     void delete(String id);
     void update(Post post);
-    Long count();
-
+    PostsPerPage getPostsPerPage(int page, long draw);
 }
