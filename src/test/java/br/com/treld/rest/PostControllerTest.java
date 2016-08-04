@@ -1,7 +1,11 @@
 package br.com.treld.rest;
 
-import static org.junit.Assert.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import javax.servlet.Filter;
@@ -40,7 +44,7 @@ public class PostControllerTest {
 	private MockMvc mockMvc;
 	private HttpSession session;
 	private ObjectMapper mapper = new ObjectMapper();
-	private Post postCreatedInTest = new Post();
+	private final String postJson = " { \"title\":\"Creating rest api\", \"body\":\"open your ide...\" } ";
 
 	@Before
 	public void setup() throws Exception {
@@ -62,32 +66,46 @@ public class PostControllerTest {
 	 */
 	@Test
 	public void validateUriPost() throws Exception {
-		String postJson = " { \"title\":\"Creating rest api\", \"body\":\"open your ide...\" } ";
 		ResultActions result = mockMvc.perform(post("/api/post/").content(postJson)
 				.contentType(MediaType.APPLICATION_JSON).session((MockHttpSession) session))
 				.andExpect(status().isCreated());
 		String localResourceCreated = result.andReturn().getResponse().getRedirectedUrl();
 		ResultActions resultSearch = mockMvc.perform(get(localResourceCreated).session((MockHttpSession) session));
 		String responseString = resultSearch.andReturn().getResponse().getContentAsString();
-		postCreatedInTest = mapper.readValue(responseString, Post.class);
-		assertTrue("Creating rest api".equals(postCreatedInTest.getTitle()));
+		Post postCreated = mapper.readValue(responseString, Post.class);
+		assertTrue("Creating rest api".equals(postCreated.getTitle()));
+		deletePost(postCreated.getId());
+	}
+
+	private void deletePost(String id) throws Exception {
+		mockMvc.perform(delete("/api/post/" + id).session((MockHttpSession) session));
+	}
+
+	private Post createPostToUseInTest() throws Exception {
+		ResultActions result = mockMvc.perform(post("/api/post/").content(postJson)
+				.contentType(MediaType.APPLICATION_JSON).session((MockHttpSession) session));
+		String postAsString = result.andReturn().getResponse().getContentAsString();
+		return mapper.readValue(postAsString, Post.class);
 	}
 
 	@Test
 	public void validateModification() throws Exception {
-		String postJson = " { \"title\":\"Creating rest api part 2\", \"body\":\"open your eclipse...\" } ";
+		Post postCreatedInTest = createPostToUseInTest();
+		String postJsonAltered = " { \"title\":\"Creating rest api part 2\", \"body\":\"open your eclipse...\" } ";
 		mockMvc.perform(put("/api/post/" + postCreatedInTest.getId()).session((MockHttpSession) session)
-				.content(postJson).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isNoContent());
+				.content(postJsonAltered).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isNoContent());
 		ResultActions resultSearch = mockMvc
 				.perform(get("/api/post/" + postCreatedInTest.getId()).session((MockHttpSession) session))
 				.andExpect(status().isOk());
 		String responseString = resultSearch.andReturn().getResponse().getContentAsString();
 		Post postModified = mapper.readValue(responseString, Post.class);
 		assertEquals(postModified.getTitle(), "Creating rest api part 2");
+		deletePost(postCreatedInTest.getId());
 	}
 
 	@Test
 	public void validateDeletion() throws Exception {
+		Post postCreatedInTest = createPostToUseInTest();
 		mockMvc.perform(delete("/api/post/" + postCreatedInTest.getId()).session((MockHttpSession) session))
 				.andExpect(status().isNoContent());
 	}
