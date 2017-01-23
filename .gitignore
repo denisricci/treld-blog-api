@@ -1,0 +1,26 @@
+# Java files
+*.class
+
+# generated files
+bin/
+
+# Eclipse project files
+.classpath
+.project
+*/.settings/*
+*/.settings/**
+*.settings*
+
+# Intellij project files
+*.iml
+*.ipr
+*.iws
+.idea/
+
+#Gradle
+.gradletasknamecache
+.gradle/
+build/
+
+#upload base directory
+base-dir/
