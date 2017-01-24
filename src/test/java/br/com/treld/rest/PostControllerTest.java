@@ -44,8 +44,9 @@ public class PostControllerTest {
 	private MockMvc mockMvc;
 	private HttpSession session;
 	private ObjectMapper mapper = new ObjectMapper();
-	private final String postJson = " { \"title\":\"Creating rest api\", \"body\":\"open your ide...\" } ";
-
+	private static final String postJson = " { \"title\":\"Creating rest api\", \"body\":\"open your ide...\" } ";
+	private static final String POST_API = "/api/post/";
+	
 	@Before
 	public void setup() throws Exception {
 		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).addFilter(springSecurityFilterChain)
@@ -66,7 +67,7 @@ public class PostControllerTest {
 	 */
 	@Test
 	public void validateUriPost() throws Exception {
-		ResultActions result = mockMvc.perform(post("/api/post/").content(postJson)
+		ResultActions result = mockMvc.perform(post(POST_API).content(postJson)
 				.contentType(MediaType.APPLICATION_JSON).session((MockHttpSession) session))
 				.andExpect(status().isCreated());
 		String localResourceCreated = result.andReturn().getResponse().getRedirectedUrl();
@@ -78,11 +79,11 @@ public class PostControllerTest {
 	}
 
 	private void deletePost(String id) throws Exception {
-		mockMvc.perform(delete("/api/post/" + id).session((MockHttpSession) session));
+		mockMvc.perform(delete(POST_API + id).session((MockHttpSession) session));
 	}
 
 	private Post createPostToUseInTest() throws Exception {
-		ResultActions result = mockMvc.perform(post("/api/post/").content(postJson)
+		ResultActions result = mockMvc.perform(post(POST_API).content(postJson)
 				.contentType(MediaType.APPLICATION_JSON).session((MockHttpSession) session));
 		String postAsString = result.andReturn().getResponse().getContentAsString();
 		return mapper.readValue(postAsString, Post.class);
@@ -92,10 +93,10 @@ public class PostControllerTest {
 	public void validateModification() throws Exception {
 		Post postCreatedInTest = createPostToUseInTest();
 		String postJsonAltered = " { \"title\":\"Creating rest api part 2\", \"body\":\"open your eclipse...\" } ";
-		mockMvc.perform(put("/api/post/" + postCreatedInTest.getId()).session((MockHttpSession) session)
+		mockMvc.perform(put(POST_API + postCreatedInTest.getId()).session((MockHttpSession) session)
 				.content(postJsonAltered).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isNoContent());
 		ResultActions resultSearch = mockMvc
-				.perform(get("/api/post/" + postCreatedInTest.getId()).session((MockHttpSession) session))
+				.perform(get(POST_API + postCreatedInTest.getId()).session((MockHttpSession) session))
 				.andExpect(status().isOk());
 		String responseString = resultSearch.andReturn().getResponse().getContentAsString();
 		Post postModified = mapper.readValue(responseString, Post.class);
@@ -106,7 +107,7 @@ public class PostControllerTest {
 	@Test
 	public void validateDeletion() throws Exception {
 		Post postCreatedInTest = createPostToUseInTest();
-		mockMvc.perform(delete("/api/post/" + postCreatedInTest.getId()).session((MockHttpSession) session))
+		mockMvc.perform(delete(POST_API + postCreatedInTest.getId()).session((MockHttpSession) session))
 				.andExpect(status().isNoContent());
 	}
 

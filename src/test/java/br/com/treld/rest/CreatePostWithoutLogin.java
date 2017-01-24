@@ -10,7 +10,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -30,7 +29,7 @@ public class CreatePostWithoutLogin {
 	@Autowired
 	private Filter springSecurityFilterChain;
 	private MockMvc mockMvc;
-	private final String postJson = " { \"title\":\"Creating rest api\", \"body\":\"open your ide...\" } ";
+	private static final String postJson = " { \"title\":\"Creating rest api\", \"body\":\"open your ide...\" } ";
 
 	@Before
 	public void setup() throws Exception {

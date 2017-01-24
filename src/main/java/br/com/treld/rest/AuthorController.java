@@ -16,7 +16,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.treld.config.security.RequiresAuthorAuthentication;
 import br.com.treld.model.Author;
-import br.com.treld.model.Post;
 import br.com.treld.services.AuthorService;
 
 /**
