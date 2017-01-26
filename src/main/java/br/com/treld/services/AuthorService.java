@@ -9,6 +9,6 @@ public interface AuthorService {
 
 	Author save(Author author);
 
-	public Author findByUrl(String username);
+	public Author findByUsername(String username);
 
 }

@@ -1,4 +1,4 @@
-package br.com.treld.rest;
+package br.com.treld.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

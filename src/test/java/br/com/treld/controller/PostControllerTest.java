@@ -1,4 +1,4 @@
-package br.com.treld.rest;
+package br.com.treld.controller;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

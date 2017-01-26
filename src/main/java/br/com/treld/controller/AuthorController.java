@@ -1,4 +1,4 @@
-package br.com.treld.rest;
+package br.com.treld.controller;
 
 import java.net.URI;
 
@@ -38,10 +38,11 @@ public class AuthorController {
 				.buildAndExpand(authorSaved.getUsername()).toUri();
 		return ResponseEntity.created(uri).body(authorSaved);
 	}
-
+	
+	@RequiresAuthorAuthentication
 	@RequestMapping(value = PATH_ID, method = RequestMethod.GET)
-	public ResponseEntity<?> findByUrl(@PathVariable("username") String username) {
-		Author author = authorService.findByUrl(username);
+	public ResponseEntity<?> findByUsername(@PathVariable("username") String username) {
+		Author author = authorService.findByUsername(username);
 		if (author != null) {
 			return ResponseEntity.status(HttpStatus.OK).body(author);
 		}

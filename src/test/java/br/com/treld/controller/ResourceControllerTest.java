@@ -1,4 +1,4 @@
-package br.com.treld.rest;
+package br.com.treld.controller;
 
 import br.com.treld.TreldTest;
 import org.junit.Before;

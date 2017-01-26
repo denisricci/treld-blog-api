@@ -24,7 +24,7 @@ public class DefaultAuthorService implements AuthorService {
 	}
 
 	@Override
-	public Author findByUrl(String username) {
+	public Author findByUsername(String username) {
 		return authorRepository.findByUsername(username);
 	}
 

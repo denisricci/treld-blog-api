@@ -1,4 +1,4 @@
-package br.com.treld.rest;
+package br.com.treld.controller;
 
 import br.com.treld.model.Author;
 import br.com.treld.repository.AuthorRepository;
@@ -41,7 +41,7 @@ public class AbstractControllerTest {
     public void doLogin(MockMvc mvc) throws Exception {
         session = new MockHttpSession();
         String username = "treld";
-        String password = "treld";
+        String password = "$2a$10$pyyz950FUGXD1RD5XhIL2upIh6R79gJ6nQ3B2qjhRsiFNApv93iFS";
         author = new Author(username, password);
         authorRepository.save(author);
         mvc.perform(post("/login")

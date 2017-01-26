@@ -4,6 +4,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Created by rsouza on 16/07/16.
  */
@@ -13,8 +15,11 @@ public class Author {
 	@Id
 	@NotEmpty(message = "the author most have a username")
 	private String username;
+	@JsonIgnore
 	@NotEmpty(message = "the author most have a password")
 	private String password;
+	@NotEmpty(message = "the author most have a email")
+	private String email;
 
 	public Author(String username, String password) {
 		this.username=username;
@@ -39,5 +44,13 @@ public class Author {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }
