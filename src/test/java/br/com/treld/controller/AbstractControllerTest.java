@@ -1,7 +1,10 @@
 package br.com.treld.controller;
 
-import br.com.treld.model.Author;
-import br.com.treld.repository.AuthorRepository;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import javax.servlet.Filter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mock.web.MockHttpSession;
@@ -9,10 +12,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import javax.servlet.Filter;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import br.com.treld.model.Author;
+import br.com.treld.services.AuthorService;
 
 /**
  * Created by rsouza on 23/07/16.
@@ -26,7 +27,7 @@ public class AbstractControllerTest {
     private Filter springSecurityFilterChain;
 
     @Autowired
-    private AuthorRepository authorRepository;
+    private AuthorService authorService;
 
     @Value("${baseUrl}")
     private String baseUrl;
@@ -41,9 +42,9 @@ public class AbstractControllerTest {
     public void doLogin(MockMvc mvc) throws Exception {
         session = new MockHttpSession();
         String username = "treld";
-        String password = "$2a$10$pyyz950FUGXD1RD5XhIL2upIh6R79gJ6nQ3B2qjhRsiFNApv93iFS";
+        String password = "treld";
         author = new Author(username, password);
-        authorRepository.save(author);
+        authorService.save(author);
         mvc.perform(post("/login")
                 .param("username", username)
                 .param("password", password)
