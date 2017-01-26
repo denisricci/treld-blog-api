@@ -45,5 +45,5 @@ db.posts.insert({
 
 db.authors.insert({
     "_id" : "treld",
-    "password" : "treld"
+    "password" : "$2a$10$pyyz950FUGXD1RD5XhIL2upIh6R79gJ6nQ3B2qjhRsiFNApv93iFS"
 });

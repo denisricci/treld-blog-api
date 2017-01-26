@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import br.com.treld.model.Author;
 import br.com.treld.repository.AuthorRepository;
 import br.com.treld.services.AuthorService;
+import br.com.treld.utils.CryptographyUtils;
 
 /**
  * Created by edubranquinho on 25/07/16.
@@ -18,6 +19,7 @@ public class DefaultAuthorService implements AuthorService {
 
 	@Override
 	public Author save(Author author) {
+		author.setPassword(CryptographyUtils.encrypt(author.getPassword()));
 		return authorRepository.save(author);
 	}
 

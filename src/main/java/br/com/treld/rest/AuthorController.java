@@ -40,7 +40,7 @@ public class AuthorController {
 	}
 
 	@RequestMapping(value = PATH_ID, method = RequestMethod.GET)
-	public ResponseEntity findByUrl(@PathVariable("username") String username) {
+	public ResponseEntity<?> findByUrl(@PathVariable("username") String username) {
 		Author author = authorService.findByUrl(username);
 		if (author != null) {
 			return ResponseEntity.status(HttpStatus.OK).body(author);

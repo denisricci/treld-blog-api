@@ -7,7 +7,12 @@ import java.io.IOException;
  */
 public class FileException extends IOException {
 
-    public FileException(String message){
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8460144925794363913L;
+
+	public FileException(String message){
         super(message);
     }
 
