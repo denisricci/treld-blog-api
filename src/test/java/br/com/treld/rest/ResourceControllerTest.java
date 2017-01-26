@@ -29,13 +29,13 @@ public class ResourceControllerTest extends AbstractControllerTest{
     private MockMvc mockMvc;
 
     @Before
-    public void before(){
+    public void before() throws Exception{
         mockMvc = getMockMvc();
+        doLogin(mockMvc);
     }
 
     @Test
     public void uploadTest() throws Exception {
-        doLogin(mockMvc);
         MockMultipartFile file = getImageForTest();
 
         mockMvc.perform(
@@ -60,7 +60,6 @@ public class ResourceControllerTest extends AbstractControllerTest{
 
     @Test
     public void getImageTest() throws Exception{
-        doLogin(mockMvc);
         MockMultipartFile file = getImageForTest();
         Map<String, String> resultMap = new HashMap<>();
         mockMvc.perform(
