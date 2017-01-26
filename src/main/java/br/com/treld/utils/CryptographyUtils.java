@@ -2,7 +2,8 @@ package br.com.treld.utils;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-public class CryptographyUtils {
+@SuppressWarnings("PMD")
+public final class CryptographyUtils {
 	
 	private static BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();	
 	

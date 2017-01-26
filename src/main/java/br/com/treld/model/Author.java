@@ -5,11 +5,14 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 /**
  * Created by rsouza on 16/07/16.
  */
 @Document(collection = "authors")
+@JsonInclude(Include.NON_NULL)
 public class Author {
 
 	@Id
