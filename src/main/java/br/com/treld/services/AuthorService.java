@@ -1,14 +1,14 @@
 package br.com.treld.services;
 
-import br.com.treld.model.Author;
+import br.com.treld.model.User;
 
 /**
  * Created by edubranquinho on 25/07/16.
  */
 public interface AuthorService {
 
-	Author save(Author author);
+	User save(User author);
 
-	public Author findByUsername(String username);
+	public User findByUsername(String username);
 
 }

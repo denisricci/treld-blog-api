@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import br.com.treld.model.Author;
+import br.com.treld.model.User;
 import br.com.treld.services.AuthorService;
 
 /**
@@ -32,7 +33,7 @@ public class AbstractControllerTest {
     @Value("${baseUrl}")
     private String baseUrl;
 
-    private Author author;
+    private User author;
     private MockHttpSession session;
 
     public MockMvc getMockMvc(){
@@ -52,7 +53,7 @@ public class AbstractControllerTest {
                 .andExpect(status().is2xxSuccessful());
     }
 
-    public Author getAuthor() {
+    public User getAuthor() {
         return author;
     }
 

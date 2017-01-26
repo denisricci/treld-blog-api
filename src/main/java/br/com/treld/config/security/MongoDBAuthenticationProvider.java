@@ -1,6 +1,6 @@
 package br.com.treld.config.security;
 
-import br.com.treld.model.Author;
+import br.com.treld.model.User;
 import br.com.treld.repository.AuthorRepository;
 import br.com.treld.utils.CryptographyUtils;
 
@@ -42,7 +42,7 @@ public class MongoDBAuthenticationProvider extends AbstractUserDetailsAuthentica
     @Override
     protected UserDetails retrieveUser(String username, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
 
-        Author author = authorRepository.findByUsername(username);
+        User author = authorRepository.findByUsername(username);
 
         if(author == null){
             String errorMessage = "Author with username " + username + " not found";

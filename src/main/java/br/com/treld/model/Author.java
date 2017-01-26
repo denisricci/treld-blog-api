@@ -1,59 +1,34 @@
 package br.com.treld.model;
 
-import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import br.com.treld.enums.Role;
 
-/**
- * Created by rsouza on 16/07/16.
- */
-@Document(collection = "authors")
-@JsonInclude(Include.NON_NULL)
-public class Author {
+@Document(collection = "superclass")
+public class Author extends User {
 
-	@Id
-	@NotEmpty(message = "the author most have a username")
-	private String username;
-	@JsonIgnore
-	@NotEmpty(message = "the author most have a password")
-	private String password;
-	@NotEmpty(message = "the author most have a email")
-	private String email;
+	private String about;
+	private FileLocation avatar;
 
 	public Author(String username, String password) {
-		this.username=username;
-		this.password=password;
+		super(username, password);
+		addRole(Role.AUTHOR);
 	}
 
-	public Author() {
-		
+	public String getAbout() {
+		return about;
 	}
 
-	public String getUsername() {
-		return username;
+	public FileLocation getAvatar() {
+		return avatar;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setAbout(String about) {
+		this.about = about;
 	}
 
-	public String getPassword() {
-		return password;
+	public void setAvatar(FileLocation avatar) {
+		this.avatar = avatar;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 }
