@@ -1,5 +1,5 @@
 package br.com.treld.enums;
 
 public enum Role {
-	AUTHOR
+	ROLE_AUTHOR
 }

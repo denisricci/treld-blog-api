@@ -11,7 +11,7 @@ import java.lang.annotation.*;
 /**
  * This annotation indicates that the endpoints requires an author authentication.
  */
-@PreAuthorize("hasRole('AUTHOR')")
+@PreAuthorize("hasRole('ROLE_AUTHOR')")
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Inherited

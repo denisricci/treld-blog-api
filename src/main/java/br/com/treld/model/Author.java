@@ -12,7 +12,7 @@ public class Author extends User {
 
 	public Author(String username, String password) {
 		super(username, password);
-		addRole(Role.AUTHOR);
+		addRole(Role.ROLE_AUTHOR);
 	}
 
 	public String getAbout() {
