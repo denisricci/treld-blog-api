@@ -1,4 +1,4 @@
-package br.com.treld.rest;
+package br.com.treld.controller;
 
 import java.net.URI;
 import java.util.List;
@@ -35,7 +35,7 @@ public class PostController {
 
 	@ApiOperation(value = "findAllPaginated", nickname = "findAllPaginated")
 	@RequestMapping(value = "/page/{page}", method = RequestMethod.GET)
-	public ResponseEntity getAll(@PathVariable("page") int page) {
+	public ResponseEntity<?> getAll(@PathVariable("page") int page) {
 		List<Post> posts = postService.getPage(page);
 		if(posts.isEmpty()){
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
@@ -44,7 +44,7 @@ public class PostController {
 	}
 
 	@RequestMapping(value = PATH_ID, method = RequestMethod.GET)
-	public ResponseEntity get(@PathVariable("id") String id) {
+	public ResponseEntity<?> get(@PathVariable("id") String id) {
 		Post post = postService.findById(id);
 		if (post == null) {
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

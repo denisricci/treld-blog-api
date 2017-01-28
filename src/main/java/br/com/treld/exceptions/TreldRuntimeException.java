@@ -5,7 +5,12 @@ package br.com.treld.exceptions;
  */
 public class TreldRuntimeException extends RuntimeException{
 
-    public TreldRuntimeException(Throwable e){
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public TreldRuntimeException(Throwable e){
         super(e);
     }
 

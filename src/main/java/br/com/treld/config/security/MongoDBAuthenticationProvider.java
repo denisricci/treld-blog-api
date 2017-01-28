@@ -1,7 +1,9 @@
 package br.com.treld.config.security;
 
-import br.com.treld.model.Author;
+import br.com.treld.model.User;
 import br.com.treld.repository.AuthorRepository;
+import br.com.treld.utils.CryptographyUtils;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +31,9 @@ public class MongoDBAuthenticationProvider extends AbstractUserDetailsAuthentica
     protected void additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
         Assert.notNull(userDetails.getPassword(), "Password of user " + userDetails.getUsername() + " is null");
 
-        //PasswordEncoder encoder = new StandardPasswordEncoder();
-        //String encodedPassword = encoder.encode(authentication.getCredentials().toString());
+        String password = authentication.getCredentials().toString();
 
-        String encodedPassword = authentication.getCredentials().toString();
-
-       if(!userDetails.getPassword().equals(encodedPassword)){
+       if(!CryptographyUtils.checkEquality(password, userDetails.getPassword())){
            throw new UsernameNotFoundException("Authentication Failed");
        }
 
@@ -43,7 +42,7 @@ public class MongoDBAuthenticationProvider extends AbstractUserDetailsAuthentica
     @Override
     protected UserDetails retrieveUser(String username, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
 
-        Author author = authorRepository.findByUsername(username);
+        User author = authorRepository.findByUsername(username);
 
         if(author == null){
             String errorMessage = "Author with username " + username + " not found";

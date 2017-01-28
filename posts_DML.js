@@ -43,7 +43,7 @@ db.posts.insert({
 	  "url":"titulo-do-post-4"
 })
 
-db.authors.insert({
+db.users.insert({
     "_id" : "treld",
-    "password" : "treld"
+    "password" : "$2a$10$pyyz950FUGXD1RD5XhIL2upIh6R79gJ6nQ3B2qjhRsiFNApv93iFS"
 });

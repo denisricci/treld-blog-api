@@ -1,43 +1,36 @@
 package br.com.treld.model;
 
-import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-/**
- * Created by rsouza on 16/07/16.
- */
-@Document(collection = "authors")
-public class Author {
+import br.com.treld.enums.Role;
 
-	@Id
-	@NotEmpty(message = "the author most have a username")
-	private String username;
-	@NotEmpty(message = "the author most have a password")
-	private String password;
+@Document(collection = "superclass")
+public class Author extends User {
+
+	private String about;
+	private FileLocation avatar;
 
 	public Author(String username, String password) {
-		this.username=username;
-		this.password=password;
+		super(username, password);
+		addRole(Role.ROLE_AUTHOR);
+	}
+	
+	public Author(){}
+
+	public String getAbout() {
+		return about;
 	}
 
-	public Author() {
-		
+	public FileLocation getAvatar() {
+		return avatar;
 	}
 
-	public String getUsername() {
-		return username;
+	public void setAbout(String about) {
+		this.about = about;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setAvatar(FileLocation avatar) {
+		this.avatar = avatar;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 }

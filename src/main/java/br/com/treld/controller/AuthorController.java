@@ -1,4 +1,4 @@
-package br.com.treld.rest;
+package br.com.treld.controller;
 
 import java.net.URI;
 
@@ -22,7 +22,7 @@ import br.com.treld.services.AuthorService;
  * Created by edubranquinho on 25/07/16.
  */
 @RestController
-@RequestMapping("${baseUrl}/author/")
+@RequestMapping("${baseUrl}/author")
 public class AuthorController {
 
 	public static final String PATH_ID = "/{username}";
@@ -31,18 +31,20 @@ public class AuthorController {
 	AuthorService authorService;
 
 	@RequiresAuthorAuthentication
-	@RequestMapping(value = "", method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Author> save(@Valid @RequestBody Author author) {
 		Author authorSaved = authorService.save(author);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path(PATH_ID)
 				.buildAndExpand(authorSaved.getUsername()).toUri();
 		return ResponseEntity.created(uri).body(authorSaved);
 	}
-
+	
+	@RequiresAuthorAuthentication
 	@RequestMapping(value = PATH_ID, method = RequestMethod.GET)
-	public ResponseEntity findByUrl(@PathVariable("username") String username) {
-		Author author = authorService.findByUrl(username);
+	public ResponseEntity<?> findByUsername(@PathVariable("username") String username) {
+		Author author = authorService.findByUsername(username);
 		if (author != null) {
+			author.setPassword(null);
 			return ResponseEntity.status(HttpStatus.OK).body(author);
 		}
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
