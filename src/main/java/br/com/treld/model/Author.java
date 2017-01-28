@@ -14,6 +14,8 @@ public class Author extends User {
 		super(username, password);
 		addRole(Role.ROLE_AUTHOR);
 	}
+	
+	public Author(){}
 
 	public String getAbout() {
 		return about;

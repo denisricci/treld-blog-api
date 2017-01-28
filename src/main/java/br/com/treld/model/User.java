@@ -7,7 +7,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -22,8 +21,7 @@ public class User {
 
 	@Id
 	@NotEmpty(message = "the user must have a username")
-	private String username;
-	@JsonIgnore
+	private String username;	
 	@NotEmpty(message = "the author must have a password")
 	private String password;
 	@NotEmpty(message = "the author must have a email")

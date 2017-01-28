@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.treld.config.security.RequiresAuthorAuthentication;
-import br.com.treld.model.User;
+import br.com.treld.model.Author;
 import br.com.treld.services.AuthorService;
 
 /**
  * Created by edubranquinho on 25/07/16.
  */
 @RestController
-@RequestMapping("${baseUrl}/author/")
+@RequestMapping("${baseUrl}/author")
 public class AuthorController {
 
 	public static final String PATH_ID = "/{username}";
@@ -31,9 +31,9 @@ public class AuthorController {
 	AuthorService authorService;
 
 	@RequiresAuthorAuthentication
-	@RequestMapping(value = "", method = RequestMethod.POST)
-	public ResponseEntity<User> save(@Valid @RequestBody User author) {
-		User authorSaved = authorService.save(author);
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Author> save(@Valid @RequestBody Author author) {
+		Author authorSaved = authorService.save(author);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path(PATH_ID)
 				.buildAndExpand(authorSaved.getUsername()).toUri();
 		return ResponseEntity.created(uri).body(authorSaved);
@@ -42,8 +42,9 @@ public class AuthorController {
 	@RequiresAuthorAuthentication
 	@RequestMapping(value = PATH_ID, method = RequestMethod.GET)
 	public ResponseEntity<?> findByUsername(@PathVariable("username") String username) {
-		User author = authorService.findByUsername(username);
+		Author author = authorService.findByUsername(username);
 		if (author != null) {
+			author.setPassword(null);
 			return ResponseEntity.status(HttpStatus.OK).body(author);
 		}
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

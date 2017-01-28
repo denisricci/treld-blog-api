@@ -33,7 +33,7 @@ public class AbstractControllerTest {
     @Value("${baseUrl}")
     private String baseUrl;
 
-    private User author;
+    private Author author;
     private MockHttpSession session;
 
     public MockMvc getMockMvc(){
