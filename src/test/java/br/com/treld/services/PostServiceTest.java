@@ -97,6 +97,8 @@ public class PostServiceTest {
         assertEquals(p2008.getId(), page2.get(2).getId());
         assertEquals(p2007.getId(), page2.get(3).getId());
         assertEquals(p2006.getId(), page2.get(4).getId());
+        
+        postRepository.deleteAll();
     }
 
     public Post createPostWithYear(int year){
