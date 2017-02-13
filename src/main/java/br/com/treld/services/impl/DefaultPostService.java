@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -33,6 +34,21 @@ public class DefaultPostService implements PostService {
 	public Post findByUrl(String url) {		
 		return postRepository.findByUrl(url);
 	}
+
+    @Override
+    public List<Post> findByTag(String tag, int page) {
+        return findByTag(tag, page, 20);
+    }
+
+    @Override
+    public List<Post> findByTag(String tag, int page, int pageSize) {
+        return findByTags(Collections.singletonList(tag), page, pageSize);
+    }
+
+    @Override
+    public List<Post> findByTags(List<String> tags, int page, int pageSize) {
+        return postRepository.findByTagsIn(tags, new PageRequest(page -1, pageSize)).getContent();
+    }
 
     @Override
     public List<Post> getPage(int pageNumber) {

@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -99,6 +100,26 @@ public class PostServiceTest {
         assertEquals(p2006.getId(), page2.get(4).getId());
         
         postRepository.deleteAll();
+    }
+
+    @Test
+    public void findByTagsTest(){
+        Post post1 = createPostWithYear(2016);
+        Post post2 = createPostWithYear(2017);
+
+        post1.setTags(Arrays.asList("java", "jvm"));
+        post2.setTags(Arrays.asList("React", "javascript"));
+
+        postRepository.save(post1);
+        postRepository.save(post2);
+
+        List<Post> byTag = postService.findByTag("java", 1);
+
+        assertEquals(1, byTag.size());
+        assertEquals(post1.getId(), byTag.get(0).getId());
+
+        postRepository.delete(post1);
+        postRepository.delete(post2);
     }
 
     public Post createPostWithYear(int year){
