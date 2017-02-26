@@ -1,13 +1,8 @@
 package br.com.treld.controller;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+import br.com.treld.TreldTest;
+import br.com.treld.model.Post;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,10 +11,15 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.Arrays;
 
-import br.com.treld.TreldTest;
-import br.com.treld.model.Post;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * Created by edubranquinho on 29/07/16.
@@ -92,5 +92,31 @@ public class PostControllerTest extends AbstractControllerTest{
 		mockMvc.perform(delete(POST_API + postCreatedInTest.getId()).session(getSession()))
 				.andExpect(status().isNoContent());
 	}
+
+	@Test
+	public void findByTags() throws Exception {
+		Post post = new Post();
+        post.setTitle("Test post");
+        post.setBody("Body of post");
+        post.setTags(Arrays.asList("Java", "Test"));
+
+        String postJson = mapper.writeValueAsString(post);
+
+        String postAsString = mockMvc.perform(post(POST_API).content(postJson)
+                .contentType(MediaType.APPLICATION_JSON).session(getSession()))
+                .andReturn().getResponse().getContentAsString();
+
+        post = mapper.readValue(postAsString, Post.class);
+
+        String response = mockMvc.perform(get(POST_API + "/tags?tags=Java&page=1")).andReturn().getResponse().getContentAsString();
+
+        Post[] posts = mapper.readValue(response, Post[].class);
+
+        mockMvc.perform(delete(POST_API + post.getId()).session(getSession()))
+				.andExpect(status().isNoContent());
+
+        assertEquals(1, posts.length);
+        assertEquals(post.getId(), posts[0].getId());
+    }
 
 }
