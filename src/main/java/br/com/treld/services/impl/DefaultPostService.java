@@ -1,14 +1,16 @@
 package br.com.treld.services.impl;
 
+import br.com.treld.exceptions.TreldRuntimeException;
 import br.com.treld.model.Post;
 import br.com.treld.repository.PostRepository;
 import br.com.treld.services.PostService;
+import br.com.treld.services.PostValidationService;
+import br.com.treld.validator.ValidationResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -20,8 +22,18 @@ public class DefaultPostService implements PostService {
     @Autowired
     private PostRepository postRepository;
 
+    @Autowired
+    private PostValidationService postValidationService;
+
     @Override
     public Post save(Post post) {
+        ValidationResult validationResult = postValidationService.validate(post);
+
+        if(validationResult.hasErrors()){
+            String errorMessage = validationResult.getErrors().stream().reduce("", (a,b) -> a + " | " + b);
+            throw new TreldRuntimeException(errorMessage);
+        }
+
         return postRepository.save(post);
     }
 
@@ -36,13 +48,8 @@ public class DefaultPostService implements PostService {
 	}
 
     @Override
-    public List<Post> findByTag(String tag, int page) {
-        return findByTag(tag, page, 20);
-    }
-
-    @Override
-    public List<Post> findByTag(String tag, int page, int pageSize) {
-        return findByTags(Collections.singletonList(tag), page, pageSize);
+    public List<Post> findByTags(List<String> tags, int page) {
+        return findByTags(tags, page, 20);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package br.com.treld.services;
 
 import br.com.treld.TreldTest;
+import br.com.treld.exceptions.TreldRuntimeException;
 import br.com.treld.model.Post;
 import br.com.treld.repository.PostRepository;
 import org.junit.Test;
@@ -10,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -40,6 +42,15 @@ public class PostServiceTest {
 
         assertEquals(post.getId(), postFromDb.getId());
         assertEquals(post.getTitle(), postFromDb.getTitle());
+    }
+
+    @Test(expected = TreldRuntimeException.class)
+    public void saveValidationTest(){
+        Post post = new Post();
+        post.setTitle("Post For validation Test");
+        post.setTags(Arrays.asList(""));
+
+        postService.save(post);
     }
 
     @Test
@@ -113,7 +124,7 @@ public class PostServiceTest {
         postRepository.save(post1);
         postRepository.save(post2);
 
-        List<Post> byTag = postService.findByTag("java", 1);
+        List<Post> byTag = postService.findByTags(Collections.singletonList("java"), 1);
 
         assertEquals(1, byTag.size());
         assertEquals(post1.getId(), byTag.get(0).getId());
